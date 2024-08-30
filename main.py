@@ -95,7 +95,7 @@ conversation = [
 
 def get_groq_response(question):
     global conversation
-    messages = conversation + [
+    messages = st.session_state.conversation + [
         {
             "role": "user",
             "content": question,
@@ -108,7 +108,7 @@ def get_groq_response(question):
         max_tokens=4096
     )
 
-    conversation.append({
+    st.session_state.conversation.append({
         "role": "assistant",
         "content": response.choices[0].message.content
     })
