@@ -126,6 +126,13 @@ if 'conversation' not in st.session_state:
 def send_message():
     question = input_box
     if question:
+        if question.lower() in ["new conversation", "start over", "reset"]:
+            st.session_state.conversation = [
+                {
+                    "role": "system",
+                    "content": PREDEFINED_TEXT
+                }
+            ]
         st.session_state.conversation.append({"role": "user", "content": question})
         response = get_groq_response(question)
         st.session_state.conversation.append({"role": "assistant", "content": response})
