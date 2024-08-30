@@ -89,7 +89,7 @@ recover: if you don't know what to do, summarize what you think the order consis
 conversation = [
     {
         "role": "system",
-        "content": "You are a chat bot designed only to answer questions about cricketer Sachin Tendulkar. You do not know anything else. If someone asks questions on topics apart from Sachin Tendulkar, just say you don't know."
+        "content": PREDEFINED_TEXT
     }
 ]
 
@@ -118,8 +118,6 @@ def get_groq_response(question):
 # Streamlit UI
 st.title("Barista Bot")
 st.header("Welcome to the Coffee Shop")
-
-
 
 # Chat interface
 if 'conversation' not in st.session_state:
