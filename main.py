@@ -134,8 +134,7 @@ def send_message():
                 }
             ]
         st.session_state.conversation.append({"role": "user", "content": question})
-        response = get_groq_response(question)
-        st.session_state.conversation.append({"role": "assistant", "content": response})
+        get_groq_response(question)
 
 # Input box for user query
 input_box = st.text_input("Welcome to Barista cafe, pls let me know the reason why you are here:")
@@ -147,8 +146,13 @@ if st.button("Send"):
 # Display conversation
 user_profile_pic = "system.PNG"
 assistant_profile_pic = "user.PNG"
+# Display conversation
+user_profile_pic = "system.PNG"
+assistant_profile_pic = "user.PNG"
 for message in st.session_state.conversation:
-    if message["role"] == "system":
+    if message["role"] == "system" and st.session_state.conversation.index(message) == 0:
+        continue  # Skip showing the initial system message
+    elif message["role"] == "system":
         st.image(assistant_profile_pic, width=30, output_format='PNG')
         st.markdown(f"**System:** {message['content']}")
     elif message["role"] == "user":
